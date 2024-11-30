@@ -1,4 +1,3 @@
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +31,7 @@ class LoginAppTest {
         emailField.setText(email);
         passwordField.setText(password);
 
-        String userName = loginApp.authenticateUser(email);
+        String userName = loginApp.authenticateUser(email, password);
 
 
         assertNotNull(userName, "UserName should not be null for valid login");
@@ -52,7 +51,7 @@ class LoginAppTest {
         emailField.setText(email);
         passwordField.setText(password);
 
-        String userName = loginApp.authenticateUser(email);
+        String userName = loginApp.authenticateUser(email, password);
 
         assertNull(userName, "Login should fail for invalid credentials");
 
@@ -74,7 +73,7 @@ class LoginAppTest {
         assertTrue(emailField.getText().isEmpty(), "Email should be empty");
 
 
-        String userName = loginApp.authenticateUser(emptyEmail);
+        String userName = loginApp.authenticateUser(emptyEmail, password);
         assertNull(userName, "Login should fail for empty email");
 
 
@@ -115,7 +114,7 @@ class LoginAppTest {
 
         emailField.setText(email);
         passwordField.setText(validPassword);
-        String userName = loginApp.authenticateUser(email);
+        String userName = loginApp.authenticateUser(email, validPassword);
 
 
         assertNotNull(userName, "Login should succeed for valid password");
@@ -123,7 +122,7 @@ class LoginAppTest {
 
 
         passwordField.setText(incorrectPassword);
-        userName = loginApp.authenticateUser(email);
+        userName = loginApp.authenticateUser(email, incorrectPassword);
 
 
         assertNull(userName, "Login should fail for incorrect password");
